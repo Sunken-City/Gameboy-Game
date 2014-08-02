@@ -1,23 +1,25 @@
-#include <gb/gb.h>
 #include <stdio.h>
+#include <gb/gb.h>
+#include <rand.h>
+#include <time.h>
 
 void main()
 {
+	UBYTE keys = 0;
 	printf("Welcome to GAMEBOY\nProgramming");
 	printf("\nPress Start");
 	waitpad(J_START);  // other keys are J_A, J_UP, J_SELECT, etc.
 	printf("\nIsn't it easy!");
-	UINT8 keys = 0;
 	while (1)
 	{
 		keys = joypad();
 		if (keys & J_A)
 		{
-			display_off();
+			printf("\nHeiBoi A Boi");
 		}
 		else if (keys & J_B)
 		{
-			display_on();
+			printf("\nHeiBoi B Boi");
 		}
 	}
 }
