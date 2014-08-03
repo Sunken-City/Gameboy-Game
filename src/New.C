@@ -4,6 +4,7 @@
 #include <time.h>
 /* Bank of tiles. */
 #define SampleTilesBank 0
+
 /* Start of tile array. */
 unsigned char SampleTiles[] =
 {
@@ -26,8 +27,42 @@ unsigned char SampleTiles[] =
 	0x54, 0x00, 0x24, 0x00, 0x00, 0x00, 0x00, 0x00
 };
 
+#define WINSZX    0x80                  /* Size of the picture in the window */
+#define WINSZY    0x50
+#define MINWINX   (MAXWNDPOSX-WINSZX+1) /* Bounds of the window origin */
+#define MINWINY   (MAXWNDPOSY-WINSZY+1)
+#define MAXWINX   MAXWNDPOSX
+#define MAXWINY   MAXWNDPOSY
+
 void main()
 {
+	UBYTE i, j;
+
+	disable_interrupts();
+	DISPLAY_OFF;
+	LCDC_REG = 0x67;
+	/*
+	* LCD        = Off
+	* WindowBank = 0x9C00
+	* Window     = On
+	* BG Chr     = 0x8800
+	* BG Bank    = 0x9800
+	* OBJ        = 8x16
+	* OBJ        = On
+	* BG         = On
+	*/
+	/* Set palettes */
+	BGP_REG = OBP0_REG = OBP1_REG = 0xE4U;
+
+	/* Initialize the background */
+	set_bkg_data(0x00, SampleTiles[0], SampleTiles);
+	for (i = 0; i < 32; i += 8)
+		for (j = 0; j < 32; j += 8)
+			set_bkg_tiles(i, j, 8, 8, SampleTiles);
+
+	DISPLAY_ON;
+	enable_interrupts();
+	/*
 	UBYTE keys = 0;
 	printf("Welcome to GAMEBOY\nProgramming");
 	printf("\nPress Start");
@@ -45,4 +80,5 @@ void main()
 			printf("\nHeiBoi B Boi");
 		}
 	}
+	*/
 }
