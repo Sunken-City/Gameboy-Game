@@ -8,9 +8,9 @@
   Form                 : All tiles as one unit.
   Format               : Gameboy 4 color.
   Compression          : None.
-  Counter              : Tile-count as Byte.
+  Counter              : None.
   Tile size            : 16 x 16
-  Tiles                : 0 to 1
+  Tiles                : 0 to 2
 
   Palette colors       : None.
   SGB Palette          : None.
