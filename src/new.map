@@ -198,7 +198,7 @@ MODULES
 	FILE c:\gbdk\lib/small/asxxxx/gb/crt0.o
 		NAME Runtime
 	FILE C:\Users\Pico\Documents\GitHub\Gameboy-Game\src\new.o
-		NAME lcc102280
+		NAME lcc94560
 LIBRARIES
 	LIBRARY c:\gbdk\lib/small/asxxxx/gb/gb.lib
 		MODULE set_data.o

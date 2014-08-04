@@ -43,8 +43,8 @@ const unsigned char mapData[] = {
 	0x01, 0x03, 0x01, 0x03, 0x01, 0x03, 0x01, 0x03,
 	0x00, 0x02, 0x00, 0x02, 0x00, 0x02, 0x00, 0x02,
 	0x01, 0x03, 0x01, 0x03, 0x01, 0x03, 0x01, 0x03,
-	0x00, 0x02, 0x00, 0x02, 0x00, 0x02, 0x00, 0x02,
-	0x01, 0x03, 0x01, 0x03, 0x01, 0x03, 0x01, 0x03
+	0x04, 0x06, 0x04, 0x06, 0x04, 0x06, 0x04, 0x06,
+	0x05, 0x07, 0x05, 0x07, 0x05, 0x07, 0x05, 0x07
 };
 
 void main()
@@ -55,7 +55,7 @@ void main()
 	DISPLAY_OFF;    // GBDK macro
 	LCDC_REG = 0x47;   // Set some hardware registers for various things like enabling background
 	BGP_REG = OBP0_REG = OBP1_REG = 0xE4U;// Set the palette to binary: 11100100 or all 4 colors
-	set_bkg_data(0x00, 0x00, SampleTiles);
+	set_bkg_data(0x00, 0x08, SampleTiles);//loads image data into memory (startingTile,#oftiles,points to unsigned char containing image data)
 	/*
 	* Draw the background
 	*
@@ -64,7 +64,7 @@ void main()
 	*/
 	for (i = 0; i < 32; i += 8)
 		for (j = 0; j < 32; j += 8)
-			set_bkg_tiles(i, j, 8, 8, mapData);
+			set_bkg_tiles(i, j, 8, 8, mapData);//displays image data (x,y,w,h,unsigned char containing tile data)
 	DISPLAY_ON;      // GBDK macro
 	enable_interrupts();    // allow interrupts as we're out of our INIT stage
 
